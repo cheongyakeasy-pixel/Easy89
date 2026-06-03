@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-06-03T08:24:42.211Z",
+  "data": {
+    "cheongyakeasy-responsive-site.doDocument": {
+      "path": "docs/02-design/features/cheongyakeasy-responsive-site.do.md",
+      "createdAt": "2026-06-03",
+      "status": "implementation-guide-created",
+      "note": "Do phase guide created. Keep PDCA phase as do until actual app implementation is completed."
+    }
+  }
+}

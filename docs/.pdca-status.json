@@ -1,0 +1,67 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2026-06-03T09:01:49.735Z",
+  "activeFeatures": [
+    "cheongyakeasy-responsive-site"
+  ],
+  "primaryFeature": "cheongyakeasy-responsive-site",
+  "features": {
+    "cheongyakeasy-responsive-site": {
+      "phase": "check",
+      "matchRate": null,
+      "iterationCount": 0,
+      "documents": {}
+    }
+  },
+  "pipeline": {
+    "currentPhase": 1,
+    "level": "Starter",
+    "phaseHistory": []
+  },
+  "session": {
+    "startedAt": "2026-06-03T08:04:45.972Z",
+    "onboardingCompleted": false,
+    "lastActivity": "2026-06-03T09:01:49.735Z"
+  },
+  "history": [
+    {
+      "feature": "cheongyakeasy-responsive-site",
+      "from": "plan",
+      "to": "design",
+      "timestamp": "2026-06-03T08:04:45.976Z"
+    },
+    {
+      "feature": "cheongyakeasy-responsive-site",
+      "action": "phase_complete",
+      "phase": "plan",
+      "nextPhase": "design",
+      "timestamp": "2026-06-03T08:04:45.976Z"
+    },
+    {
+      "feature": "cheongyakeasy-responsive-site",
+      "from": "design",
+      "to": "do",
+      "timestamp": "2026-06-03T08:17:27.557Z"
+    },
+    {
+      "feature": "cheongyakeasy-responsive-site",
+      "action": "phase_complete",
+      "phase": "design",
+      "nextPhase": "do",
+      "timestamp": "2026-06-03T08:17:27.558Z"
+    },
+    {
+      "feature": "cheongyakeasy-responsive-site",
+      "from": "do",
+      "to": "check",
+      "timestamp": "2026-06-03T09:01:49.735Z"
+    },
+    {
+      "feature": "cheongyakeasy-responsive-site",
+      "action": "phase_complete",
+      "phase": "do",
+      "nextPhase": "check",
+      "timestamp": "2026-06-03T09:01:49.735Z"
+    }
+  ]
+}
