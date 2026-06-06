@@ -1,15 +1,20 @@
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
+import EmptyState from '../components/ui/EmptyState';
 import NoticeCard from '../components/notice/NoticeCard';
+import NoticeFilterBar from '../components/notice/NoticeFilterBar';
 import PageHeader from '../components/layout/PageHeader';
 import RealEstateNewsList from '../components/news/RealEstateNewsList';
 import { calendarEventLabels, formatKoreanDate } from '../services/formatters';
 import { getUpcomingEvents } from '../services/calendarService';
-import { getFeaturedNotices } from '../services/noticeService';
+import { listNotices } from '../services/noticeService';
+import type { NoticeFilter } from '../types/notice';
 
 export default function HomePage() {
-  const featuredNotices = getFeaturedNotices();
+  const [noticeFilter, setNoticeFilter] = useState<NoticeFilter>({});
+  const filteredNotices = useMemo(() => listNotices(noticeFilter), [noticeFilter]);
   const upcomingEvents = getUpcomingEvents(4);
 
   return (
@@ -32,12 +37,29 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <PageHeader title="주요 공고" description="현재 접수 중이거나 곧 접수할 공고입니다." />
-        <div className="card-grid">
-          {featuredNotices.map((notice) => (
-            <NoticeCard key={notice.id} notice={notice} />
-          ))}
-        </div>
+        <PageHeader title="청약리스트" description="상태와 조건을 선택해 홈에서도 바로 공고를 좁혀보세요." />
+        <NoticeFilterBar
+          filter={noticeFilter}
+          onChange={setNoticeFilter}
+          onReset={() => setNoticeFilter({})}
+        />
+        {filteredNotices.length > 0 ? (
+          <div className="card-grid">
+            {filteredNotices.map((notice) => (
+              <NoticeCard key={notice.id} notice={notice} />
+            ))}
+          </div>
+        ) : (
+          <EmptyState
+            action={
+              <Button onClick={() => setNoticeFilter({})} type="button" variant="secondary">
+                필터 초기화
+              </Button>
+            }
+            description="지역이나 상태 조건을 줄이면 더 많은 공고를 볼 수 있어요."
+            title="조건에 맞는 공고가 없어요."
+          />
+        )}
       </section>
 
       <section className="section two-column">
