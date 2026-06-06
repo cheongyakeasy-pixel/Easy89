@@ -1,10 +1,11 @@
-import { CalendarDays, Home, Landmark, ListChecks, Search } from 'lucide-react';
+import { CalendarDays, Home, Landmark, ListChecks, Newspaper, Search } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 const items = [
   ['/', '홈', Home],
-  ['/subscriptions', '공고', Search],
-  ['/calendar', '일정', CalendarDays],
+  ['/subscriptions', '리스트', Search],
+  ['/calendar', '캘린더', CalendarDays],
+  ['/news', '뉴스', Newspaper],
   ['/guide', '가이드', ListChecks],
   ['/loan', '대출', Landmark],
 ] as const;

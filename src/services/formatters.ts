@@ -1,10 +1,18 @@
-import type { CalendarEventType, HousingType, NoticeStatus, SupplyType } from '../types/notice';
+import type {
+  AreaRange,
+  CalendarEventType,
+  HousingType,
+  NoticeStatus,
+  PriceRange,
+  RegulationCondition,
+  SupplyType,
+} from '../types/notice';
 
 export const statusLabels: Record<NoticeStatus, string> = {
-  open: '접수 중',
-  upcoming: '접수 예정',
-  closed: '접수 마감',
-  announced: '발표 완료',
+  open: '접수중',
+  upcoming: '접수예정',
+  closed: '접수마감',
+  announced: '발표완료',
 };
 
 export const housingTypeLabels: Record<HousingType, string> = {
@@ -20,6 +28,27 @@ export const supplyTypeLabels: Record<SupplyType, string> = {
   general: '일반공급',
   priority: '우선공급',
   remaining: '잔여공급',
+};
+
+export const areaRangeLabels: Record<AreaRange, string> = {
+  'under-40': '40㎡ 미만',
+  '40-59': '40~59㎡',
+  '60-84': '60~84㎡',
+  'over-85': '85㎡ 이상',
+};
+
+export const priceRangeLabels: Record<PriceRange, string> = {
+  'under-400m': '4억 미만',
+  '400m-700m': '4억~7억',
+  '700m-1b': '7억~10억',
+  'over-1b': '10억 이상',
+};
+
+export const regulationConditionLabels: Record<RegulationCondition, string> = {
+  'regulated-area': '규제지역',
+  'non-regulated-area': '비규제지역',
+  'public-housing-district': '공공택지',
+  'price-cap': '분양가상한제',
 };
 
 export const calendarEventLabels: Record<CalendarEventType, string> = {
@@ -61,4 +90,16 @@ export function getHousingTypeLabel(type: HousingType) {
 
 export function getSupplyTypeLabel(type: SupplyType) {
   return supplyTypeLabels[type];
+}
+
+export function getAreaRangeLabel(range: AreaRange) {
+  return areaRangeLabels[range];
+}
+
+export function getPriceRangeLabel(range: PriceRange) {
+  return priceRangeLabels[range];
+}
+
+export function getRegulationConditionLabel(condition: RegulationCondition) {
+  return regulationConditionLabels[condition];
 }

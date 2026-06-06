@@ -6,6 +6,13 @@ export type HousingType =
   | 'youth'
   | 'newlywed';
 export type SupplyType = 'special' | 'general' | 'priority' | 'remaining';
+export type AreaRange = 'under-40' | '40-59' | '60-84' | 'over-85';
+export type PriceRange = 'under-400m' | '400m-700m' | '700m-1b' | 'over-1b';
+export type RegulationCondition =
+  | 'regulated-area'
+  | 'non-regulated-area'
+  | 'public-housing-district'
+  | 'price-cap';
 
 export interface UnitSummary {
   areaType: string;
@@ -24,6 +31,7 @@ export interface SubscriptionNotice {
   address?: string;
   housingType: HousingType;
   supplyType: SupplyType;
+  regulationCondition: RegulationCondition;
   status: NoticeStatus;
   applicationStartDate: string;
   applicationEndDate: string;
@@ -44,6 +52,9 @@ export interface NoticeFilter {
   region?: string;
   housingType?: HousingType | 'all';
   supplyType?: SupplyType | 'all';
+  areaRange?: AreaRange | 'all';
+  priceRange?: PriceRange | 'all';
+  regulationCondition?: RegulationCondition | 'all';
   status?: NoticeStatus | 'all';
   dateFrom?: string;
   dateTo?: string;

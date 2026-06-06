@@ -5,6 +5,7 @@ import GuidePage from './pages/GuidePage';
 import HomePage from './pages/HomePage';
 import LoanPage from './pages/LoanPage';
 import NotFoundPage from './pages/NotFoundPage';
+import RealEstateNewsPage from './pages/RealEstateNewsPage';
 import SubscriptionDetailPage from './pages/SubscriptionDetailPage';
 import SubscriptionsPage from './pages/SubscriptionsPage';
 
@@ -16,6 +17,7 @@ export const routes: RouteObject[] = [
       { path: '/subscriptions', element: <SubscriptionsPage /> },
       { path: '/subscription-detail/:id', element: <SubscriptionDetailPage /> },
       { path: '/calendar', element: <CalendarPage /> },
+      { path: '/news', element: <RealEstateNewsPage /> },
       { path: '/guide', element: <GuidePage /> },
       { path: '/loan', element: <LoanPage /> },
       { path: '*', element: <NotFoundPage /> },

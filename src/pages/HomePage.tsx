@@ -3,6 +3,7 @@ import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import NoticeCard from '../components/notice/NoticeCard';
 import PageHeader from '../components/layout/PageHeader';
+import RealEstateNewsList from '../components/news/RealEstateNewsList';
 import { calendarEventLabels, formatKoreanDate } from '../services/formatters';
 import { getUpcomingEvents } from '../services/calendarService';
 import { getFeaturedNotices } from '../services/noticeService';
@@ -22,7 +23,7 @@ export default function HomePage() {
         </p>
         <div className="hero__actions">
           <Link to="/subscriptions">
-            <Button>청약 공고 보기</Button>
+            <Button>청약리스트 보기</Button>
           </Link>
           <Link to="/guide">
             <Button variant="secondary">청약 가이드</Button>
@@ -64,6 +65,11 @@ export default function HomePage() {
             </Button>
           </Link>
         </Card>
+      </section>
+
+      <section className="section">
+        <PageHeader title="부동산뉴스" description="네이버 뉴스 경제/부동산 섹션의 최신 흐름을 확인하세요." />
+        <RealEstateNewsList compact limit={4} />
       </section>
     </div>
   );

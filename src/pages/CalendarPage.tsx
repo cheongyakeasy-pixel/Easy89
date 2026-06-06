@@ -11,7 +11,7 @@ export default function CalendarPage() {
   return (
     <div className="page-stack">
       <PageHeader
-        title="청약 일정"
+        title="캘린더"
         description="접수 시작, 접수 마감, 당첨 발표, 계약 일정을 날짜순으로 확인하세요."
       />
       <Card>

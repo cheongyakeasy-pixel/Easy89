@@ -1,6 +1,6 @@
 # AGENTS.md - CheongyakEasy 작업 지침
 
-이 문서는 청약이지 프로젝트에서 작업하는 에이전트가 먼저 읽어야 할 운영 지침이다. 현재 프로젝트는 주택청약 공고, 일정, 가이드, 대출 준비 정보를 제공하는 반응형 웹 사이트를 만들기 위한 문서화 단계까지 진행되어 있으며, 실제 앱 구현은 다음 단계다.
+이 문서는 청약이지 프로젝트에서 작업하는 에이전트가 먼저 읽어야 할 운영 지침이다. 현재 프로젝트는 주택청약 공고, 일정, 가이드, 대출 준비 정보, 부동산뉴스를 제공하는 Vite + React + TypeScript 반응형 웹앱으로 구현되어 Vercel 프로덕션에 배포되어 있다.
 
 ## 1. 프로젝트 맥락
 
@@ -10,8 +10,12 @@ v1은 다음 성격을 가진다.
 
 - 로그인 없는 공개 정보 사이트
 - 모바일 우선 반응형 웹
-- Vite + React + TypeScript 기반 구현 예정
+- Vite + React + TypeScript 기반 구현
 - TypeScript seed data 기반으로 시작
+- Vercel 프로덕션 배포
+- Kakao 지도 API와 카카오톡 공유 API 연결
+- 네이버 뉴스 경제/부동산 섹션 프록시 API와 1분 갱신 UI
+- Supabase 클라이언트와 프로덕션 환경변수 설정
 - 이후 공식 공고 데이터 동기화, 즐겨찾기, 알림 기능으로 확장 가능하게 설계
 - 개인별 자격 판정, 청약 신청 대행, 금융 상품 추천은 하지 않음
 
@@ -19,7 +23,7 @@ v1은 다음 성격을 가진다.
 
 ## 2. 현재 상태
 
-현재 저장소는 문서 중심 상태다. 실제 `src/` 앱 코드는 아직 구현되지 않았거나 구현 대기 상태일 수 있다.
+현재 저장소는 앱 구현과 운영 배포가 진행된 상태다. `src/`에는 라우트, 페이지, 컴포넌트, seed data, 서비스 로직이 있으며 `api/real-estate-news.js`는 Vercel Serverless Function으로 동작한다.
 
 주요 문서:
 
@@ -27,9 +31,12 @@ v1은 다음 성격을 가진다.
 - Design: `docs/02-design/features/cheongyakeasy-responsive-site.design.md`
 - Do Guide: `docs/02-design/features/cheongyakeasy-responsive-site.do.md`
 - Design System: `docs/DESIGN.MD`
+- Root Design Summary: `Design.md`
+- Skills Inventory: `Skills.md`
+- Hooks Inventory: `Hooks.md`
 - PDCA status: `docs/.pdca-status.json`
 
-PDCA 흐름상 현재 기능은 `do` 단계다. 구현이 끝나기 전에는 `do`를 완료 처리하지 않는다. 실제 구현, 빌드, 주요 화면 검증까지 끝난 뒤 Check 단계로 넘어간다.
+PDCA 흐름상 문서에는 `do` 단계 기록이 남아 있을 수 있다. 실제 코드 기준으로는 홈, 청약리스트, 상세, 캘린더, 가이드, 대출, 부동산뉴스, Kakao/Supabase/Vercel 연동이 구현되어 있다. Check/Analyze 단계로 넘어갈 때는 현재 코드와 배포 상태를 기준으로 판단한다.
 
 ## 3. 문서 우선순위
 
@@ -39,7 +46,10 @@ PDCA 흐름상 현재 기능은 `do` 단계다. 구현이 끝나기 전에는 `d
 2. `docs/02-design/features/cheongyakeasy-responsive-site.design.md`
 3. `docs/02-design/features/cheongyakeasy-responsive-site.do.md`
 4. `docs/DESIGN.MD`
-5. `docs/.pdca-status.json`
+5. `Design.md`
+6. `Skills.md`
+7. `Hooks.md`
+8. `docs/.pdca-status.json`
 
 설계와 구현이 충돌하면 Design 문서를 우선하되, 디자인 토큰/시각 규칙은 `docs/DESIGN.MD`를 따른다. 기존 문서에 오래된 Toss 관련 표현이 남아 있어도, 현재 프로젝트의 시각 시스템은 WantedDev/Montage 기반으로 본다.
 
@@ -55,6 +65,9 @@ PDCA 흐름상 현재 기능은 `do` 단계다. 구현이 끝나기 전에는 `d
 - TypeScript seed data
 - Vitest
 - lucide-react
+- Vercel Serverless Function
+- Supabase JS/SSR packages
+- Kakao JavaScript SDK
 
 Montage WDS 직접 설치는 선택 사항이다. GitHub Packages 인증이나 registry 이슈가 있으면 `docs/DESIGN.MD`의 토큰을 CSS 변수로 재현하고 자체 컴포넌트를 구현한다.
 
@@ -65,6 +78,7 @@ npm create vite@latest . -- --template react-ts
 npm install
 npm install react-router-dom lucide-react
 npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
+npm install @supabase/supabase-js @supabase/ssr
 ```
 
 ## 5. 목표 페이지
@@ -74,9 +88,10 @@ v1에서 구현할 주요 경로:
 | 경로 | 역할 |
 |------|------|
 | `/` | 홈, 주요 공고와 마감 임박 일정, 가이드/대출 진입점 |
-| `/subscriptions` | 청약 공고 목록, 검색, 필터 |
+| `/subscriptions` | 청약리스트, 검색, 필터 |
 | `/subscription-detail/:id` | 공고 상세, 일정, 자격, 공급 정보, 서류, 공식 링크 |
-| `/calendar` | 접수 시작/마감/당첨 발표/계약 일정 |
+| `/calendar` | 캘린더, 접수 시작/마감/당첨 발표/계약 일정 |
+| `/news` | 부동산뉴스, 네이버 뉴스 경제/부동산 최신 기사 |
 | `/guide` | 청약 기본, 자격, 가점, 서류, 절차 가이드 |
 | `/loan` | 대출/자금 준비 정보와 주의사항 |
 | `*` | 찾을 수 없음 |
@@ -98,11 +113,14 @@ src/
     notice.ts
     guide.ts
     loan.ts
+    news.ts
   services/
     noticeService.ts
     calendarService.ts
     guideService.ts
     formatters.ts
+    newsService.ts
+    supabaseClient.ts
   components/
     layout/
       AppLayout.tsx
@@ -124,6 +142,11 @@ src/
       NoticeSummary.tsx
       ScheduleTimeline.tsx
       UnitSummaryTable.tsx
+      SubscriptionCalendarPreview.tsx
+      KakaoLocationMap.tsx
+      KakaoShareButton.tsx
+    news/
+      RealEstateNewsList.tsx
     guide/
       GuideCard.tsx
       ChecklistBlock.tsx
@@ -136,10 +159,15 @@ src/
     CalendarPage.tsx
     GuidePage.tsx
     LoanPage.tsx
+    RealEstateNewsPage.tsx
     NotFoundPage.tsx
   styles/
     montage-tokens.css
     global.css
+api/
+  real-estate-news.js
+supabase/
+  config.toml
 ```
 
 ## 7. 코딩 규칙
@@ -175,7 +203,39 @@ src/
 - `sourceUrl`
 - `lastCheckedDate`
 
-모든 공고에는 공식 출처 URL과 확인일이 있어야 한다. 공고 정보 일부가 누락되어도 화면이 깨지지 않게 처리한다.
+모든 공고에는 공식 출처 URL과 확인일이 있어야 한다. 공고 정보 일부가 누락되어도 화면이 깨지지 않게 처리한다. 위치 지도는 `address`를 우선 사용하고, 없으면 `region` + `district`를 fallback으로 사용한다.
+
+## 8-1. 외부 연동 상태
+
+### Vercel
+
+- Production URL: `https://cheongyakeasy.vercel.app`
+- SPA rewrite는 `vercel.json`에서 모든 경로를 `/index.html`로 보낸다.
+- Serverless Function: `/api/real-estate-news`
+
+### Kakao
+
+- 지도 SDK와 카카오톡 공유 SDK를 사용한다.
+- 필요한 환경변수:
+  - `VITE_KAKAO_JAVASCRIPT_KEY`
+  - `VITE_KAKAO_MAP_APP_KEY`는 선택이며, 없으면 JavaScript key를 재사용한다.
+- Kakao Developers Web 플랫폼 도메인에 `https://cheongyakeasy.vercel.app` 등록이 필요하다.
+
+### Supabase
+
+- 패키지: `@supabase/supabase-js`, `@supabase/ssr`
+- 클라이언트: `src/services/supabaseClient.ts`
+- 필요한 환경변수:
+  - `VITE_SUPABASE_URL`
+  - `VITE_SUPABASE_PUBLISHABLE_KEY`
+- 로컬 Supabase CLI 설정은 `supabase/config.toml`에 있다.
+- `npx supabase start`는 Docker Desktop 실행이 필요하다.
+
+### Naver 부동산뉴스
+
+- 원본: `https://news.naver.com/breakingnews/section/101/260`
+- 브라우저 CORS를 피하기 위해 `api/real-estate-news.js`가 서버에서 HTML을 가져와 파싱한다.
+- 응답 캐시는 Vercel `s-maxage=60` 기준이며, 프론트는 60초마다 재요청한다.
 
 ## 9. 디자인 규칙
 

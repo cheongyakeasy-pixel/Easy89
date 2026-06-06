@@ -14,10 +14,26 @@ describe('noticeService', () => {
     expect(results[0].title).toContain('마포');
   });
 
+  it('filters notices by area, price, and regulation condition', () => {
+    const results = listNotices({
+      areaRange: '60-84',
+      priceRange: '700m-1b',
+      regulationCondition: 'regulated-area',
+    });
+
+    expect(results).toHaveLength(1);
+    expect(results[0].id).toBe('applyhome-seoul-private-2026-06');
+  });
+
   it('normalizes invalid query values', () => {
-    const filter = parseNoticeFilter(new URLSearchParams('status=wrong&housingType=bad'));
+    const filter = parseNoticeFilter(
+      new URLSearchParams('status=wrong&housingType=bad&areaRange=huge&priceRange=cheap&regulationCondition=nope'),
+    );
     expect(filter.status).toBe('all');
     expect(filter.housingType).toBe('all');
+    expect(filter.areaRange).toBe('all');
+    expect(filter.priceRange).toBe('all');
+    expect(filter.regulationCondition).toBe('all');
   });
 
   it('creates sorted calendar events', () => {

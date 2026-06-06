@@ -7,6 +7,8 @@ import Badge from '../components/ui/Badge';
 import NoticeStatusBadge from '../components/notice/NoticeStatusBadge';
 import ScheduleTimeline from '../components/notice/ScheduleTimeline';
 import UnitSummaryTable from '../components/notice/UnitSummaryTable';
+import KakaoLocationMap from '../components/notice/KakaoLocationMap';
+import KakaoShareButton from '../components/notice/KakaoShareButton';
 import {
   getHousingTypeLabel,
   getSupplyTypeLabel,
@@ -80,9 +82,11 @@ export default function SubscriptionDetailPage() {
             <a className="button button--primary button--full" href={notice.sourceUrl} rel="noopener noreferrer" target="_blank">
               공식 공고 보기 <ExternalLink aria-hidden="true" size={16} />
             </a>
+            <KakaoShareButton notice={notice} />
           </Card>
         </aside>
       </div>
+      <KakaoLocationMap notice={notice} />
     </article>
   );
 }

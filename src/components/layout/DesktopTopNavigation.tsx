@@ -2,8 +2,9 @@ import { NavLink } from 'react-router-dom';
 
 const items = [
   ['/', '홈'],
-  ['/subscriptions', '청약 공고'],
-  ['/calendar', '일정'],
+  ['/subscriptions', '청약리스트'],
+  ['/calendar', '캘린더'],
+  ['/news', '부동산뉴스'],
   ['/guide', '가이드'],
   ['/loan', '대출 정보'],
 ];

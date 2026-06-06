@@ -5,9 +5,15 @@ import NoticeStatusBadge from './NoticeStatusBadge';
 import { formatKoreanDate, getHousingTypeLabel, getSupplyTypeLabel } from '../../services/formatters';
 import type { SubscriptionNotice } from '../../types/notice';
 
-export default function NoticeCard({ notice }: { notice: SubscriptionNotice }) {
+export default function NoticeCard({
+  notice,
+  variant = 'card',
+}: {
+  notice: SubscriptionNotice;
+  variant?: 'card' | 'list';
+}) {
   return (
-    <Card className="notice-card">
+    <Card className={`notice-card notice-card--${variant}`}>
       <div className="row row--between">
         <div className="cluster">
           <Badge tone="primary">{notice.organization}</Badge>
