@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "CheongyakEasy",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "npm.packageManager": "npm",
+    "typescript.tsdk": "node_modules/typescript/lib"
+  }
+}

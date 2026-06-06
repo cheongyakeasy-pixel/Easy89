@@ -30,6 +30,13 @@ npm install
 npm run dev
 ```
 
+VS Code 연동:
+
+- `CheongyakEasy.code-workspace`를 열면 이 저장소가 단일 workspace로 열린다.
+- `.vscode/tasks.json`에 `dev: vite`, `build`, `test`, `preview` 작업이 등록되어 있다.
+- `.vscode/extensions.json`에는 Codex/ChatGPT, Vitest, Supabase, GitHub PR 확장 추천이 들어 있다.
+- `.vscode/settings.json`은 workspace TypeScript SDK와 npm package manager를 사용하도록 설정한다.
+
 기본 검증:
 
 ```bash

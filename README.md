@@ -22,6 +22,8 @@ npm install
 npm run dev
 ```
 
+VS Code에서는 `CheongyakEasy.code-workspace`를 열고 `Terminal > Run Task...`에서 `dev: vite`, `build`, `test`, `preview`를 실행할 수 있습니다.
+
 ## 검증
 
 ```bash

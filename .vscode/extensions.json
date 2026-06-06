@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "openai.chatgpt",
+    "vitest.explorer",
+    "supabase.vscode-supabase-extension",
+    "github.vscode-pull-request-github"
+  ]
+}
