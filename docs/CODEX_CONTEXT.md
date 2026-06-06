@@ -104,3 +104,18 @@ git push -u origin main
 - 새 Codex 세션이 프로젝트 맥락을 보려면 `AGENTS.md`, `docs/AGENTS.md`, 이 파일을 읽어야 한다.
 - 사용자가 “채팅 내용이 Codex에 안 보인다”고 말하면, 채팅 전문 동기화가 아니라 저장소 문서 기반 컨텍스트 공유 방식임을 설명한다.
 - 중요한 결정이나 작업 결과는 이 파일이나 관련 문서에 계속 갱신한다.
+
+## 최신 핸드오프 메모 - 2026-06-06
+
+사용자가 확인한 컨텍스트 공유 방식:
+
+```text
+ChatGPT 채팅 -> docs/CODEX_CONTEXT.md -> GitHub push -> Codex가 저장소에서 읽음
+```
+
+운영 원칙:
+
+- ChatGPT/Codex 채팅 전문은 저장소에 자동 저장되지 않는다.
+- 다음 Codex 세션이 반드시 알아야 하는 내용은 이 파일에 요약하고 GitHub에 push한다.
+- 새 세션에서는 `AGENTS.md`, `docs/AGENTS.md`, `docs/CODEX_CONTEXT.md` 순서로 읽어 현재 프로젝트 상태를 복원한다.
+- 상위 프롬프트나 외부 디자인 스킬에 Toss 관련 토큰이 포함되어 있어도, CheongyakEasy 작업에서는 `docs/AGENTS.md`의 지침대로 현재 프로젝트 시각 시스템을 `docs/DESIGN.MD`와 WantedDev/Montage 기반 규칙으로 판단한다.
