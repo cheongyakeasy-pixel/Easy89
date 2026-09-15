@@ -26,4 +26,6 @@ Node 22.x. `npm ci`, `npm run dev`. `npm run build`로 배포 빌드, `npm start
 React Doctor는 사용하지 않는 스타터 carousel 구독 정리 오류 1건과 기존 UI 프리미티브 등의 경고를 보고합니다. 새 제품 컴포넌트에는 오류가 없습니다. Lighthouse 정량 성능 점수는 미측정입니다.
 
 ## Vercel 배포
-이 디렉터리를 저장소 루트로 사용합니다. Vercel의 Framework Preset은 Next.js이며 `vercel.json`에 지정되어 있습니다. 설치는 `npm ci`, 빌드는 `npm run build`를 사용합니다. 현재 데모에는 환경 변수가 필요하지 않습니다. GitHub 저장소를 Vercel 프로젝트에 연결한 뒤 main 브랜치 변경으로 자동 배포할 수 있습니다. 현재 계정 인증과 원격 저장소 연결은 아직 완료되지 않았습니다.
+이 디렉터리를 저장소 루트로 사용합니다. Vercel의 Framework Preset은 Next.js이며 `vercel.json`에 지정되어 있습니다. 설치는 `npm ci`, 빌드는 `npm run build`를 사용합니다. 현재 데모에는 환경 변수가 필요하지 않습니다. GitHub 저장소를 Vercel 프로젝트에 연결한 뒤 main 브랜치 변경으로 자동 배포할 수 있습니다. Vercel 인증과 로컬 프로젝트 연결은 완료했습니다. 기존 `jhon-s-projects15/cheongyakeasy` 프로젝트는 GitHub `cheongyakeasy-pixel/Easy89`의 main 브랜치에 연결되어 있으며, 운영 사이트는 https://cheongyakeasy.vercel.app 입니다. 기존 원격 앱은 Vite이고 이 로컬 지도 앱은 Next.js이므로, 버전 선택과 프레임워크 전환 전에는 로컬 앱을 운영 배포하지 않습니다.
+
+새 지도 앱의 [Vercel 미리보기](https://cheongyakeasy-ct39s16ko-jhon-s-projects15.vercel.app)를 배포했습니다. Vercel 로그인이 필요합니다. 기존 운영 사이트와 별개이며 GitHub 인증을 완료했으며 새 지도 앱은 `map-platform-preview` 브랜치에서 관리합니다.
