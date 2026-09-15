@@ -21,3 +21,6 @@ Vercel 미리보기: https://cheongyakeasy-ct39s16ko-jhon-s-projects15.vercel.ap
 
 ## GitHub 자동 배포 수정
 GitHub 배포에서 보관된 Vinext 설정이 Git에서 제외한 .openai/hosting.json을 참조하여 타입 검사 실패. Next.js 앱 검사 범위에서 사용하지 않는 vite.config.ts를 제외. 실제 앱 소스 타입 검사는 그대로 유지.
+
+## Supabase 연결
+기존 ropocarifucilkwvloat 프로젝트 복구 요청 성공. 관리 SQL SELECT 1 성공, Auth settings 공개 키 HTTP 200. public 테이블은 0개. 기존 운영 VITE_SUPABASE_URL과 새 NEXT_PUBLIC_SUPABASE_URL이 같은 프로젝트임을 확인. Vercel Production/Preview/Development와 로컬 환경 설정 완료. REST 루트 스키마 정보는 secret key를 요구하며 공개 키 HTTP 401이 정상 정책임을 응답으로 확인. 회원 기능 자체는 미구현.

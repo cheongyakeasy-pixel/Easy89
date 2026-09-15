@@ -29,3 +29,11 @@ React Doctor는 사용하지 않는 스타터 carousel 구독 정리 오류 1건
 이 디렉터리를 저장소 루트로 사용합니다. Vercel의 Framework Preset은 Next.js이며 `vercel.json`에 지정되어 있습니다. 설치는 `npm ci`, 빌드는 `npm run build`를 사용합니다. 현재 데모에는 환경 변수가 필요하지 않습니다. GitHub 저장소를 Vercel 프로젝트에 연결한 뒤 main 브랜치 변경으로 자동 배포할 수 있습니다. Vercel 인증과 로컬 프로젝트 연결은 완료했습니다. 기존 `jhon-s-projects15/cheongyakeasy` 프로젝트는 GitHub `cheongyakeasy-pixel/Easy89`의 main 브랜치에 연결되어 있으며, 운영 사이트는 https://cheongyakeasy.vercel.app 입니다. 기존 원격 앱은 Vite이고 이 로컬 지도 앱은 Next.js이므로, 버전 선택과 프레임워크 전환 전에는 로컬 앱을 운영 배포하지 않습니다.
 
 새 지도 앱의 [Vercel 미리보기](https://cheongyakeasy-ct39s16ko-jhon-s-projects15.vercel.app)를 배포했습니다. Vercel 로그인이 필요합니다. 기존 운영 사이트와 별개이며 GitHub 인증을 완료했으며 새 지도 앱은 `map-platform-preview` 브랜치에서 관리합니다.
+
+## 서비스 연결
+- Vercel: jhon-s-projects15/cheongyakeasy, GitHub map-platform-preview 미리보기 브랜치.
+- Supabase: 기존 cheongyakeasy 프로젝트를 복구하고 NEXT_PUBLIC_SUPABASE_URL 및 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY를 Vercel 세 환경과 로컬에 설정했습니다.
+- 연결 확인: `node scripts/check-services.mjs` (인증 서비스의 읽기 전용 설정 응답 확인). 데이터베이스는 관리 API의 SELECT 1로 별도 검증했습니다.
+- 회원 화면, 데이터 테이블, 관심 단지 동기화는 아직 구현되지 않았습니다. 현재 데모는 계속 가상 단지와 기기 내 저장을 사용합니다.
+- 기존 운영 앱의 카카오 지도 키는 이미 Vercel에 설정되어 있습니다. 새 지도 앱은 현재 OpenStreetMap을 사용합니다.
+- 실제 공고 수집 API와 로그인 메일 발송용 SMTP는 해당 기능을 구현할 때 연결합니다. 추가 유료 서비스는 생성하지 않았습니다.
