@@ -18,3 +18,6 @@
 ## 새 지도 앱 미리보기
 Vercel 미리보기: https://cheongyakeasy-ct39s16ko-jhon-s-projects15.vercel.app
 배포 ID: dpl_EcCeg8rwMKxHiUXBn8jLUt1mzdmK. READY, 원격 빌드와 타입 검사 통과, 인증된 HTTP 응답 200 및 지도 앱 콘텐츠 확인. 브라우저는 Vercel 로그인 보호 화면으로 이동하여 원격 상호작용 검증은 미완료. 기존 운영 사이트는 유지. GitHub CLI 계정 인증과 저장소 ADMIN 권한 확인 완료. 새 지도 앱 브랜치는 map-platform-preview이며 기존 main은 유지.
+
+## GitHub 자동 배포 수정
+GitHub 배포에서 보관된 Vinext 설정이 Git에서 제외한 .openai/hosting.json을 참조하여 타입 검사 실패. Next.js 앱 검사 범위에서 사용하지 않는 vite.config.ts를 제외. 실제 앱 소스 타입 검사는 그대로 유지.
